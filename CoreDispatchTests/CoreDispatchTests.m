@@ -287,7 +287,7 @@
     
     __block int32_t val = 0;
     
-    [[CDQueue defaultQuality] async:^{
+    [CDQueue.defaultQuality async:^{
         val++;
         [sem signal];
     }];
@@ -303,7 +303,7 @@
     
     __block int32_t val = 0;
     
-    [[CDQueue defaultQuality] async:^{
+    [CDQueue.defaultQuality async:^{
         val++;
         [sem signal];
     }];

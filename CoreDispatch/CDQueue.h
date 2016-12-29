@@ -19,17 +19,19 @@ NS_CLASS_AVAILABLE(10_0,9_0) @interface CDQueue : CDObject
 
 - (instancetype)initWithLabel:(NSString* _Nullable)label qos:(NSQualityOfService)qos type:(CDQueueType)type;
 
+@property (nullable,nonatomic,copy) NSString* label;
+@property (nonatomic,assign) NSQualityOfService qualityOfService;
+@property (nonatomic,assign) CDQueueType type;
+
 + (instancetype)concurrent;
 + (instancetype)serial;
 
-+ (instancetype)main;
-+ (instancetype)userInteractiveQuality;
-+ (instancetype)userInitiatedQuality;
-+ (instancetype)defaultQuality;
-+ (instancetype)utilityQuality;
-+ (instancetype)backgroundQuality;
-
-@property (nonatomic,readonly) dispatch_queue_t queue;
+@property (class,atomic,readonly) CDQueue* main;
+@property (class,atomic,readonly) CDQueue* userInteractiveQuality;
+@property (class,atomic,readonly) CDQueue* userInitiatedQuality;
+@property (class,atomic,readonly) CDQueue* defaultQuality;
+@property (class,atomic,readonly) CDQueue* utilityQuality;
+@property (class,atomic,readonly) CDQueue* backgroundQuality;
 
 - (void)async:(dispatch_block_t)block;
 - (void)sync:(DISPATCH_NOESCAPE dispatch_block_t)block;
@@ -41,15 +43,13 @@ NS_CLASS_AVAILABLE(10_0,9_0) @interface CDQueue : CDObject
 typedef void (^CDApplyBlock)(NSUInteger iteration);
 - (void)applyIterations:(NSUInteger)iterations block:(DISPATCH_NOESCAPE CDApplyBlock)block;
 
-@property (nullable,nonatomic,copy) NSString* label;
-@property (nonatomic,assign) NSQualityOfService qualityOfService;
-@property (nonatomic,assign) CDQueueType type;
-
 - (void)setSpecific:(void* _Nullable)specific forKey:(void*)key destructor:(dispatch_function_t _Nullable)destructor;
 - (void* _Nullable)specificForKey:(void*)key;
 + (void* _Nullable)specificForKey:(void*)key;
 
 @property (nonatomic,readonly,getter=isCurrent) BOOL current;
+
+@property (nonatomic,readonly) dispatch_queue_t queue;
 
 @end
 
