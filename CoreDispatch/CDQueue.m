@@ -12,7 +12,6 @@
 @interface CDQueue () {
     NSString* _initialLabel;
     NSQualityOfService _initalQualityOfService;
-    CDQueueType _initialQueueType;
 }
 
 @end
@@ -21,7 +20,7 @@
 
 - (instancetype)initWithLabel:(NSString *)label qos:(NSQualityOfService)qos type:(CDQueueType)type
 {
-    self = [super init];
+    self = [self init];
     self.label = label;
     self.qualityOfService = qos;
     self.type = type;
@@ -32,7 +31,7 @@
 {
     self = [super init];
     _initalQualityOfService = NSQualityOfServiceDefault;
-    _initialLabel = nil;
+    _initialLabel = [[NSBundle mainBundle].bundleIdentifier stringByAppendingString:[NSProcessInfo processInfo].globallyUniqueString];
     return self;
 }
 
@@ -133,6 +132,12 @@ static void* CDQueueSpecificKey = &CDQueueSpecificKey;
 - (void)applyIterations:(NSUInteger)iterations block:(CDApplyBlock)block
 {
     dispatch_apply(iterations, self.queue, block);
+}
+
+- (void)setType:(CDQueueType)type
+{
+    if ( ![self isObjectLoaded] )
+        _type = type;
 }
 
 - (void)setLabel:(NSString *)label

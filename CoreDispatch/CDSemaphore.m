@@ -26,17 +26,22 @@
 - (long)wait:(NSTimeInterval)time
 {
     dispatch_time_t dtt = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC));
-    return dispatch_semaphore_wait((dispatch_semaphore_t)self.object, dtt);
+    return dispatch_semaphore_wait(self.semaphore, dtt);
 }
 
 - (long)waitForever
 {
-    return dispatch_semaphore_wait((dispatch_semaphore_t)self.object, DISPATCH_TIME_FOREVER);
+    return dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
 }
 
 - (long)signal
 {
-    return dispatch_semaphore_signal((dispatch_semaphore_t)self.object);
+    return dispatch_semaphore_signal(self.semaphore);
+}
+
+- (dispatch_semaphore_t)semaphore
+{
+    return (dispatch_semaphore_t)self.object;
 }
 
 @end
