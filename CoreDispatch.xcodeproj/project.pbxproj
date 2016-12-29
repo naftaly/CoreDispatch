@@ -11,6 +11,7 @@
 		FA12BAE11E144C0A00901C30 /* CDSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = FA12BADF1E144C0A00901C30 /* CDSemaphore.m */; };
 		FA12BAE51E144D2E00901C30 /* CDGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = FA12BAE31E144D2E00901C30 /* CDGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA12BAE61E144D2E00901C30 /* CDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FA12BAE41E144D2E00901C30 /* CDGroup.m */; };
+		FA12BAE81E1596A700901C30 /* CDObjectSubclass.h in Headers */ = {isa = PBXBuildFile; fileRef = FA12BAE71E1596A700901C30 /* CDObjectSubclass.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		FAA06E901E142A5600FF50FA /* CoreDispatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA06E861E142A5600FF50FA /* CoreDispatch.framework */; };
 		FAA06E951E142A5600FF50FA /* CoreDispatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA06E941E142A5600FF50FA /* CoreDispatchTests.m */; };
 		FAA06E971E142A5600FF50FA /* CoreDispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = FAA06E891E142A5600FF50FA /* CoreDispatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +36,7 @@
 		FA12BADF1E144C0A00901C30 /* CDSemaphore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSemaphore.m; sourceTree = "<group>"; };
 		FA12BAE31E144D2E00901C30 /* CDGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDGroup.h; sourceTree = "<group>"; };
 		FA12BAE41E144D2E00901C30 /* CDGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDGroup.m; sourceTree = "<group>"; };
+		FA12BAE71E1596A700901C30 /* CDObjectSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDObjectSubclass.h; sourceTree = "<group>"; };
 		FAA06E861E142A5600FF50FA /* CoreDispatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDispatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA06E891E142A5600FF50FA /* CoreDispatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDispatch.h; sourceTree = "<group>"; };
 		FAA06E8A1E142A5600FF50FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				FAA06E891E142A5600FF50FA /* CoreDispatch.h */,
+				FA12BAE71E1596A700901C30 /* CDObjectSubclass.h */,
 				FAA06EA41E142B1800FF50FA /* CDObject.h */,
 				FAA06EA51E142B1800FF50FA /* CDObject.m */,
 				FAA06EA01E142A8C00FF50FA /* CDQueue.h */,
@@ -121,6 +124,7 @@
 				FAA06E971E142A5600FF50FA /* CoreDispatch.h in Headers */,
 				FAA06EA21E142A8C00FF50FA /* CDQueue.h in Headers */,
 				FA12BAE01E144C0A00901C30 /* CDSemaphore.h in Headers */,
+				FA12BAE81E1596A700901C30 /* CDObjectSubclass.h in Headers */,
 				FAA06EA61E142B1800FF50FA /* CDObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 #import "CDObject.h"
+#import "CDObjectSubclass.h"
 #import "CDQueue.h"
 
 @interface CDObject () {

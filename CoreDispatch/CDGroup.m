@@ -7,6 +7,7 @@
 //
 
 #import "CDGroup.h"
+#import "CDObjectSubclass.h"
 
 @implementation CDGroup
 

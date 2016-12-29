@@ -14,10 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_CLASS_AVAILABLE(10_0,9_0) @interface CDObject : NSObject
 
-+ (instancetype)withDispatchObject:(dispatch_object_t _Nullable)object;
-- (instancetype)initWithDispatchObject:(dispatch_object_t _Nullable)object NS_DESIGNATED_INITIALIZER;
-
-@property (nullable,nonatomic,strong) dispatch_object_t object;
+@property (nullable,nonatomic,readonly) dispatch_object_t object;
 @property (nullable,nonatomic,assign) void* context;
 
 - (void)setFinalizer:(dispatch_function_t _Nullable)finalizer;
@@ -27,8 +24,6 @@ NS_CLASS_AVAILABLE(10_0,9_0) @interface CDObject : NSObject
 
 - (void)suspend;
 - (void)resume;
-
-- (BOOL)isObjectLoaded;
 
 @end
 

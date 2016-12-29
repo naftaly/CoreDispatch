@@ -7,6 +7,7 @@
 //
 
 #import "CDQueue.h"
+#import "CDObjectSubclass.h"
 
 @interface CDQueue () {
     NSString* _initialLabel;

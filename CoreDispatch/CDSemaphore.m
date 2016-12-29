@@ -7,6 +7,7 @@
 //
 
 #import "CDSemaphore.h"
+#import "CDObjectSubclass.h"
 
 @implementation CDSemaphore
 
