@@ -151,9 +151,7 @@ static void* CDQueueSpecificKey = &CDQueueSpecificKey;
     if ( ![self isObjectLoaded] )
         return [_initialLabel copy];
     const char* l = dispatch_queue_get_label(self.queue);
-    if ( l )
-        return [NSString stringWithUTF8String:l];
-    return nil;
+    return [NSString stringWithUTF8String:l];
 }
 
 - (void)setQualityOfService:(NSQualityOfService)qualityOfService

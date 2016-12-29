@@ -11,16 +11,16 @@
 
 @implementation CDSemaphore
 
-+ (instancetype)semaphore:(long)count
-{
-    return [self withDispatchObject:dispatch_semaphore_create(count)];
-}
-
 - (instancetype)initWithCount:(long)count
 {
     self = [super init];
     self.object = dispatch_semaphore_create(1);
     return self;
+}
+
++ (instancetype)semaphore:(long)count
+{
+    return [[self alloc] initWithCount:count];
 }
 
 - (long)wait:(NSTimeInterval)time
