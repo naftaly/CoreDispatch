@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable,nonatomic,strong) dispatch_object_t object;
 
 - (BOOL)isObjectLoaded;
+- (dispatch_object_t)objectWithoutLoading;
 
 @end
 

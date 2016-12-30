@@ -46,7 +46,13 @@ static void* CDQueueSpecificKey = &CDQueueSpecificKey;
         self.object = queue;
         [self setSpecific:(__bridge void * _Nullable)(self) forKey:CDQueueSpecificKey destructor:NULL];
     }
-    return (dispatch_queue_t)self.object;
+    return (dispatch_queue_t)[self objectWithoutLoading];
+}
+
+- (dispatch_object_t)object
+{
+    (void)self.queue;
+    return [super object];
 }
 
 - (void)setTargetQueue:(CDQueue *)queue

@@ -45,6 +45,11 @@
     _object = object;
 }
 
+- (dispatch_object_t)objectWithoutLoading
+{
+    return _object;
+}
+
 - (BOOL)isObjectLoaded
 {
     return _object != NULL;
@@ -52,17 +57,17 @@
 
 - (void*)context
 {
-    return dispatch_get_context(_object);
+    return dispatch_get_context(self.object);
 }
 
 - (void)setContext:(void *)context
 {
-    dispatch_set_context(_object, context);
+    dispatch_set_context(self.object, context);
 }
 
 - (void)setFinalizer:(dispatch_function_t)finalizer
 {
-    dispatch_set_finalizer_f(_object, finalizer);
+    dispatch_set_finalizer_f(self.object, finalizer);
 }
 
 - (void)setTargetQueue:(CDQueue*)queue
@@ -72,22 +77,22 @@
 
 - (void)activate
 {
-    dispatch_activate(_object);
+    dispatch_activate(self.object);
 }
 
 - (void)suspend
 {
-    dispatch_suspend(_object);
+    dispatch_suspend(self.object);
 }
 
 - (void)resume
 {
-    dispatch_resume(_object);
+    dispatch_resume(self.object);
 }
 
 - (NSString *)description
 {
-    return [_object debugDescription];
+    return [self.object debugDescription];
 }
 
 @end

@@ -287,8 +287,9 @@
     
     __block int32_t val = 0;
     
-    [CDQueue.defaultQuality async:^{
-        val++;
+    CDQueue* queue = [CDQueue concurrent];
+    [queue async:^{
+        OSAtomicIncrement32(&val);
         [sem signal];
     }];
     
@@ -303,14 +304,65 @@
     
     __block int32_t val = 0;
     
-    [CDQueue.defaultQuality async:^{
-        val++;
+    CDQueue* queue = [CDQueue concurrent];
+    [queue async:^{
+        OSAtomicIncrement32(&val);
         [sem signal];
     }];
     
     [sem waitForever];
     
     XCTAssertEqual(val, 1);
+}
+
+- (void)testContext
+{
+    const void* kContext = &kContext;
+    
+    CDQueue* queue = [CDQueue concurrent];
+    queue.context = (void*)kContext;
+    XCTAssertEqual(queue.context, kContext);
+    
+}
+
+static void _finalizer( void* context ) {
+    XCTestExpectation* expect = (__bridge XCTestExpectation *)(context);
+    [expect fulfill];
+}
+
+- (void)testFinalizer
+{
+    XCTestExpectation*  expectation = [self expectationWithDescription:@"CoreDispatch Expectation"];
+    
+    @autoreleasepool {
+        CDQueue* queue = [CDQueue concurrent];
+        queue.context = (__bridge void * _Nullable)(expectation);
+        [queue setFinalizer:_finalizer];
+    }
+    
+    [self waitForExpectationsWithTimeout:20 handler:^(NSError * _Nullable error) {
+    }];
+}
+
+- (void)testObject
+{
+    CDQueue* queue = [CDQueue concurrent];
+    [queue activate];
+    [queue suspend];
+    [queue resume];
+}
+
+- (void)testDescription
+{
+    CDQueue* queue = [CDQueue concurrent];
+    queue.qualityOfService = NSQualityOfServiceDefault;
+    queue.label = @"test concurrent queue";
+    XCTAssertNotNil(queue.description);
+    
+    queue = [CDQueue serial];
+    queue.qualityOfService = NSQualityOfServiceBackground;
+    queue.label = @"test serial queue";
+    XCTAssertNotNil(queue.description);
 }
 
 @end
