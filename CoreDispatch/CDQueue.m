@@ -137,7 +137,9 @@ static void* CDQueueSpecificKey = &CDQueueSpecificKey;
 
 - (void)applyIterations:(NSUInteger)iterations block:(CDApplyBlock)block
 {
-    dispatch_apply(iterations, self.queue, block);
+    dispatch_apply( iterations, self.queue, ^(size_t i) {
+        block(i);
+    });
 }
 
 - (void)setType:(CDQueueType)type
